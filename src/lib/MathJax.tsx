@@ -23,7 +23,7 @@ const typesettingFailed = (err: ErrorEvent) =>
     typeof err.message !== "undefined" ? err.message : JSON.stringify(err)
   }`;
 
-const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
+export const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
   inline = false,
   hideUntilTypeset,
   onInitTypeset,
@@ -206,5 +206,3 @@ const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
     </span>
   );
 };
-
-export default MathJax;
