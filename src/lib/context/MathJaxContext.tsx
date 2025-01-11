@@ -1,8 +1,15 @@
 // MathJaxContext.tsx
 import { FC } from "react";
-import { MathJaxBaseContextProps } from "./types";
-import MathJaxBaseContextProvider from "./MathJaxBaseContext";
+import type { MathJaxBaseContextProps } from "./types";
+import { MathJaxBaseContextProvider } from "./MathJaxBaseContextProvider";
 
-export const MathJaxContext: FC<MathJaxBaseContextProps> = (props) => {
-  return <MathJaxBaseContextProvider {...props} />;
+export const MathJaxContext: FC<MathJaxBaseContextProps> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <MathJaxBaseContextProvider {...props}>
+      {children}
+    </MathJaxBaseContextProvider>
+  );
 };

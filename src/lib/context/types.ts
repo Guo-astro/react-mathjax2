@@ -1,6 +1,7 @@
+// types.ts
+import { OptionList } from "mathjax-full/js/util/Options";
 import { MathJax2Object, MathJax2Config } from "../MathJax2";
 import { MathJax3Object, MathJax3Config } from "../MathJax3";
-import { OptionList } from "mathjax-full/js/util/Options";
 
 export type TypesettingFunction =
   | "tex2chtml"
@@ -23,12 +24,12 @@ export type TypesettingFunction =
   | "asciimath2mmlPromise";
 
 export interface MathJaxBaseContextOverrideableProps {
-  hideUntilTypeset?: "first" | "every";
-  typesettingOptions?: {
+  hideUntilTypeset: "first" | "every";
+  typesettingOptions: {
     fn: TypesettingFunction;
     options?: Omit<OptionList, "display">;
   };
-  renderMode?: "pre" | "post";
+  renderMode: "pre" | "post";
 }
 
 export type MathJaxBaseContextSubscriberProps =
