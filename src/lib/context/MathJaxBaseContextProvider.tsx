@@ -1,12 +1,14 @@
+// MathJaxBaseContext.tsx
 import { FC, useContext, useRef } from "react";
 import { MathJax2Config, MathJax2Object } from "../MathJax2";
 import { MathJax3Config, MathJax3Object } from "../MathJax3";
-import { defaultContextValue, MathJaxBaseContext } from "./MathJaxBaseContext";
-import type {
+import {
+  MathJaxBaseContextOverrideableProps,
   MathJaxBaseContextProps,
   MathJaxBaseContextSubscriberProps,
-  MathJaxBaseContextOverrideableProps,
 } from "./types";
+import { defaultContextValue, MathJaxBaseContext } from "./MathJaxBaseContext";
+
 interface WindowWithMathJax {
   MathJax?: MathJax2Object | MathJax3Object | MathJax2Config | MathJax3Config;
 }
@@ -19,7 +21,7 @@ const DEFAULT_V3_SRC =
 let v2Promise: Promise<MathJax2Object>;
 let v3Promise: Promise<MathJax3Object>;
 
-export const MathJaxBaseContextProvider: FC<MathJaxBaseContextProps> = ({
+const MathJaxBaseContextProvider: FC<MathJaxBaseContextProps> = ({
   config,
   version = 3,
   src = version === 2 ? DEFAULT_V2_SRC : DEFAULT_V3_SRC,
@@ -32,7 +34,7 @@ export const MathJaxBaseContextProvider: FC<MathJaxBaseContextProps> = ({
   children,
 }) => {
   const existingContext = useContext(MathJaxBaseContext);
-  // Compare existingContext.promise to defaultContextValue.promise
+
   if (
     existingContext.version !== undefined &&
     existingContext.version !== version &&
@@ -172,4 +174,10 @@ export const MathJaxBaseContextProvider: FC<MathJaxBaseContextProps> = ({
       {children}
     </MathJaxBaseContext.Provider>
   );
+};
+
+export {
+  MathJaxBaseContextProvider as default,
+  MathJaxBaseContext,
+  defaultContextValue,
 };
